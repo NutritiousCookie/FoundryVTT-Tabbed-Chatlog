@@ -41,5 +41,6 @@
 		}
 	],
 	"url": "https://github.com/NutritiousCookie/FoundryVTT-Tabbed-Chatlog-2-Tabs",
-	"manifest": "https://raw.githubusercontent.com/NutritiousCookie/FoundryVTT-Tabbed-Chatlog-2-Tabs/master/module.json"
+	"manifest": "https://github.com/NutritiousCookie/FoundryVTT-Tabbed-Chatlog-2-Tabs/releases/download/v0.1/module.json"
+	"download": "https://github.com/NutritiousCookie/FoundryVTT-Tabbed-Chatlog-2-Tabs/releases/download/v0.1/module.zip"
 }
