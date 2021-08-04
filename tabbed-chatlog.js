@@ -86,7 +86,6 @@ Hooks.on("renderChatLog", async function (chatLog, html, user) {
     let toPrepend = '<nav class="tabbedchatlog tabs">';
     toPrepend += `<a class="item ic" data-tab="ic">${game.i18n.localize("TC.TABS.IC")}</a><i id="icNotification" class="notification-pip fas fa-exclamation-circle" style="display: none;"></i>`;
     toPrepend += `<a class="item rolls" data-tab="rolls">${game.i18n.localize("TC.TABS.Rolls")}</a><i id="rollsNotification" class="notification-pip fas fa-exclamation-circle" style="display: none;"></i>`;
-    toPrepend += `<a class="item ooc" data-tab="ooc">${game.i18n.localize("TC.TABS.OOC")}</a></nav><i id="oocNotification" class="notification-pip fas fa-exclamation-circle" style="display: none;"></i>`;
     html.prepend(toPrepend);
 
     window.game.tabbedchat = {};
@@ -180,12 +179,6 @@ Hooks.on("renderChatMessage", (chatMessage, html, data) => {
             html.css("cssText", "display: none !important;");
             html.addClass("hardHide");
         }
-    } else if (currentTab == "ooc") {
-        if (data.message.type == CONST.CHAT_MESSAGE_TYPES.OOC || (data.message.type == CONST.CHAT_MESSAGE_TYPES.WHISPER && !game.settings.get("tabbed-chatlog", "icWhispers"))) {
-            html.css("display", "list-item");
-        } else {
-            html.css("display", "none");
-        }
     }
 });
 
@@ -236,19 +229,7 @@ Hooks.on("createChatMessage", (chatMessage, content) => {
                 $("#icNotification").show();
             }
         }
-    } else {
-        if (salonEnabled && chatMessage.data.type == CONST.CHAT_MESSAGE_TYPES.WHISPER && !game.settings.get("tabbed-chatlog", "icWhispers")) return;
-
-        if (currentTab != "ooc") {
-            if (game.settings.get("tabbed-chatlog", "autoNavigate")) {
-                window.game.tabbedchat.tabs.activate("ooc", {triggerCallback: true});
-            }
-            else {
-                setOOCNotifyProperties();
-                $("#oocNotification").show();
-            }
-        }
-    }
+    }}
 });
 
 Hooks.on("preCreateChatMessage", (chatMessage, content) => {
@@ -486,15 +467,9 @@ function setRollsNotifyProperties() {
     $("#rollsNotification").css({'right': ($("div#sidebar.app").width() / nTabs * (nTabs - 2)).toString() + 'px'});
 };
 
-function setOOCNotifyProperties() {
-    const nTabs = $("nav.tabbedchatlog.tabs > a.item").length;
-    $("#oocNotification").css({'right': ($("div#sidebar.app").width() / nTabs * (nTabs - 3)).toString() + 'px'});
-};
-
 function setALLTabsNotifyProperties() {
     setICNotifyProperties();
     setRollsNotifyProperties();
-    setOOCNotifyProperties();
 }
 
 
