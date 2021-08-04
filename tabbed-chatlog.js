@@ -229,7 +229,7 @@ Hooks.on("createChatMessage", (chatMessage, content) => {
                 $("#icNotification").show();
             }
         }
-    }}
+    }
 });
 
 Hooks.on("preCreateChatMessage", (chatMessage, content) => {
