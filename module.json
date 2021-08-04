@@ -1,11 +1,11 @@
 {
-	"name": "tabbed-chatlog",
-	"title": "Tabbed Chatlog",
+	"name": "tabbed-chatlog-2-tab",
+	"title": "Tabbed Chatlog - 2 Tabs",
 	"description": "Splits the Chatlog into In Character (per scene), Rolls (per scene), and Out of Character (global).",
-	"version": "1.6.3",
+	"version": "0.1",
 	"minimumCoreVersion": "0.8.0",
 	"compatibleCoreVersion": "0.8.8",
-	"author": "Cody Swendrowski <cody@swendrowski.us>",
+	"author": "NutritiousCookie",
 	"esmodules": [
 		"./tabbed-chatlog.js"
 	],
@@ -40,7 +40,6 @@
 			"path": "languages/de.json"
 		}
 	],
-	"url": "https://github.com/cswendrowski/FoundryVTT-tabbed-chatlog",
-	"manifest": "https://github.com/cswendrowski/FoundryVTT-tabbed-chatlog/releases/download/latest/module.json",
-	"download": "https://github.com/cswendrowski/FoundryVTT-tabbed-chatlog/releases/download/1.6.3/module.zip"
+	"url": "https://github.com/NutritiousCookie/FoundryVTT-Tabbed-Chatlog-2-Tabs",
+	"manifest": "https://github.com/NutritiousCookie/FoundryVTT-Tabbed-Chatlog-2-Tabs/edit/master/module.json"
 }
