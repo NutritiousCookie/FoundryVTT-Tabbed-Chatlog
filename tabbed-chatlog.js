@@ -38,29 +38,13 @@ function isMessageTypeVisible(messageType) {
                 case CONST.CHAT_MESSAGE_TYPES.OTHER:
                     return false;
                 case CONST.CHAT_MESSAGE_TYPES.OOC:
-                    return false;
+                    return true;
                 case CONST.CHAT_MESSAGE_TYPES.IC:
                     return true;
                 case CONST.CHAT_MESSAGE_TYPES.EMOTE:
                     return true;
                 case CONST.CHAT_MESSAGE_TYPES.WHISPER:
                     return game.settings.get("tabbed-chatlog", "icWhispers");
-                case CONST.CHAT_MESSAGE_TYPES.ROLL:
-                    return false;
-            }
-            break;
-        case "ooc":
-            switch (messageType) {
-                case CONST.CHAT_MESSAGE_TYPES.OTHER:
-                    return false;
-                case CONST.CHAT_MESSAGE_TYPES.OOC:
-                    return true;
-                case CONST.CHAT_MESSAGE_TYPES.IC:
-                    return false;
-                case CONST.CHAT_MESSAGE_TYPES.EMOTE:
-                    return false;
-                case CONST.CHAT_MESSAGE_TYPES.WHISPER:
-                    return !game.settings.get("tabbed-chatlog", "icWhispers");
                 case CONST.CHAT_MESSAGE_TYPES.ROLL:
                     return false;
             }
@@ -117,7 +101,6 @@ Hooks.on("renderChatLog", async function (chatLog, html, user) {
             switch (tab) {
                 case "rolls":
                 case "ic":
-                case "ooc":
 
                     setClassVisibility($(".type0"), isMessageTypeVisible(CONST.CHAT_MESSAGE_TYPES.OTHER));
                     setClassVisibility($(".type1"), isMessageTypeVisible(CONST.CHAT_MESSAGE_TYPES.OOC));
