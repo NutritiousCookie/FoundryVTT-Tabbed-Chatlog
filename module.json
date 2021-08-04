@@ -2,7 +2,7 @@
 	"name": "tabbed-chatlog-2-tab",
 	"title": "Tabbed Chatlog - 2 Tabs",
 	"description": "Splits the Chatlog into Chat and Rolls.",
-	"version": "0.1",
+	"version": "0.2",
 	"minimumCoreVersion": "0.8.0",
 	"compatibleCoreVersion": "0.8.8",
 	"author": "NutritiousCookie",
