@@ -44,7 +44,7 @@ function isMessageTypeVisible(messageType) {
                 case CONST.CHAT_MESSAGE_TYPES.EMOTE:
                     return true;
                 case CONST.CHAT_MESSAGE_TYPES.WHISPER:
-                    return game.settings.get("tabbed-chatlog", "icWhispers");
+                    return true;
                 case CONST.CHAT_MESSAGE_TYPES.ROLL:
                     return false;
             }
@@ -52,7 +52,7 @@ function isMessageTypeVisible(messageType) {
         default:
             console.log("Unknown tab " + tab + "!");
     }
-    return true; // if there is some future new message type, its probably better to default to be visible than to hide it.
+    return true; //if there is some future new message type, its probably better to default to be visible than to hide it.
 }
 
 
@@ -101,7 +101,8 @@ Hooks.on("renderChatLog", async function (chatLog, html, user) {
                 case "rolls":
                 case "ic":
 
-                    setClassVisibility($(".type0"), isMessageTypeVisible(CONST.CHAT_MESSAGE_TYPES.OTHER));
+                    setClassVisibility($(".type0"), 
+				       Visible(CONST.CHAT_MESSAGE_TYPES.OTHER));
                     setClassVisibility($(".type1"), isMessageTypeVisible(CONST.CHAT_MESSAGE_TYPES.OOC));
                     setClassVisibility($(".type2").filter(".scenespecific"), false);
                     setClassVisibility($(".type2").not(".scenespecific"), isMessageTypeVisible(CONST.CHAT_MESSAGE_TYPES.IC));
@@ -139,8 +140,8 @@ Hooks.on("renderChatMessage", (chatMessage, html, data) => {
 
     if (data.message.type == CONST.CHAT_MESSAGE_TYPES.OTHER
     	|| data.message.type == CONST.CHAT_MESSAGE_TYPES.IC
-		|| data.message.type == CONST.CHAT_MESSAGE_TYPES.EMOTE
-		|| data.message.type == CONST.CHAT_MESSAGE_TYPES.ROLL) {
+	|| data.message.type == CONST.CHAT_MESSAGE_TYPES.EMOTE
+	|| data.message.type == CONST.CHAT_MESSAGE_TYPES.ROLL) {
         if (data.message.speaker.scene != undefined && game.settings.get("tabbed-chatlog", "perScene")) {
             html.addClass("scenespecific");
             html.addClass("scene" + data.message.speaker.scene);
@@ -172,9 +173,10 @@ Hooks.on("renderChatMessage", (chatMessage, html, data) => {
         }
     } else if (currentTab == "ic") {
         if ((data.message.type == CONST.CHAT_MESSAGE_TYPES.IC
-    	  || data.message.type == CONST.CHAT_MESSAGE_TYPES.EMOTE
-		  || (data.message.type == CONST.CHAT_MESSAGE_TYPES.WHISPER && game.settings.get("tabbed-chatlog", "icWhispers"))) && sceneMatches) {
-            html.css("display", "list-item");
+	   || data.message.type == CONST.CHAT_MESSAGE_TYPES.OOC
+    	   || data.message.type == CONST.CHAT_MESSAGE_TYPES.EMOTE
+	   || (data.message.type == CONST.CHAT_MESSAGE_TYPES.WHISPER && game.settings.get("tabbed-chatlog", "icWhispers"))) && sceneMatches) {
+         		html.css("display", "list-item");
         } else {
             html.css("cssText", "display: none !important;");
             html.addClass("hardHide");
