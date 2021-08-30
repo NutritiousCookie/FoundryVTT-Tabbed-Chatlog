@@ -101,8 +101,7 @@ Hooks.on("renderChatLog", async function (chatLog, html, user) {
                 case "rolls":
                 case "ic":
 
-                    setClassVisibility($(".type0"), 
-				       Visible(CONST.CHAT_MESSAGE_TYPES.OTHER));
+                    setClassVisibility($(".type0"), isMessageTypeVisible(CONST.CHAT_MESSAGE_TYPES.OTHER));
                     setClassVisibility($(".type1"), isMessageTypeVisible(CONST.CHAT_MESSAGE_TYPES.OOC));
                     setClassVisibility($(".type2").filter(".scenespecific"), false);
                     setClassVisibility($(".type2").not(".scenespecific"), isMessageTypeVisible(CONST.CHAT_MESSAGE_TYPES.IC));
